@@ -1,0 +1,142 @@
+<html>
+<head>
+    <title>PORTFOLIO</title>
+    <link href="portfolio.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Jquery Core CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- Jquery Validation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#project">Projects</a></li>
+            <li><a href="#contact">Contact Me</a></li>
+        </ul>
+        <div class="social">
+            <a href="https://www.facebook.com/profile.php?id=100090409986297"><i
+                    class="fa-brands fa-square-facebook"></i>
+                <a href="https://twitter.com/home"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.instagram.com/ash.__mal/"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </nav>
+    <section id="home">
+        <div class="main">
+            <h1 class="headings">ASHMAL K</h1>
+            <button class="btn">HIRE Me</button>
+        </div>
+    </section>
+    <section id="about">
+        <h1 class="headings">ABOUT ME</h1>
+        <div id="pic">
+            <img src="me.jpg" alt="">
+            <div id="intro">
+                <h2>ASHMAL K</h2>
+                <P>Hi I'm a front-end developer and i am passionate about my <br>work.While most personal websites
+                    feature a photo of the<br> individual behind the site, a display of someone’s most<br> treasured
+                    items is another way of helping us get to know <br>them better. </P>
+                <div class="detel">
+                    <a href="cv.jpg">View CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="portfolio">
+        <h1 class="headings">PORTFOLIO</h1>
+        <div class="gallery">
+            <img src="prt1.jpg" alt="">
+            <img src="prt2.jpg" alt="">
+            <img src="prt3.jpg" alt="">
+            <img src="prt4.jpg" alt="">
+            <img src="prt5.jpg" alt="">
+            <img src="prt6.jpg" alt="">
+        </div>
+    </section>
+
+    <section id="project">
+        <div class="pro">
+            <section id="pro">
+                <h1 class="project">
+                    <div class="prom">PROJECTS</div>
+                </h1>
+
+            </section>
+        </div>
+        </div>
+        <div class="row">
+            <div class="box">
+                <img src="el.jpg" alt="">
+                <h4 class="headings">Employee Management System</h4>
+                <p>The project contains an admin and user side.This project makes a convenient way for employees and
+                    company admin to interact with each other.</p>
+            </div>
+            <div class="box">
+                <img src="dr3.jpg" alt="">
+                <h2 class="headings">Doctor Booking Website</h2>
+                <p>This is a website used for making appointment with doctors in online.The main idea of the work is to
+                    provide easy and comfort to patient while taking appointment from doctors.</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h1 class="headings">CONTACT</h1>
+        <form name="submit-to-google-sheet" action="" class="form" id="regform">
+            <input type="text" name="Name" id="Name" class="input" placeholder="Enter Your Name" >
+            <input type="email" name="Email" class="input" placeholder="Enter Your Email">
+            <textarea name="Message" id="msg" cols="30" rows="10" placeholder="Enter Your Message"></textarea>
+            <input type="submit" value="SEND" id="submit"><br>
+            <span id="success"></span>
+        </form>
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxaneDgUy5mX6nNCJelybn0x-TSD3CHFfTpZSjQ-sjeo2eZNHEJnfcdEmwwAWaJZemk/exec'
+            const form = document.forms['submit-to-google-sheet']
+            const success = document.getElementById('success');
+            form.addEventListener('submit', e => {
+                e.preventDefault()
+                fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                    .then(response => {
+                        success.innerHTML = "Data Successfully Send";
+                        setTimeout(function () {
+                            success.innerHTML = "";
+                        }, 2000)
+                        form.reset();
+                    })
+                    .catch(error => console.error('Error!', error.message))
+            })
+        </script>
+    </section>
+</body>
+<script>
+    jQuery.validator.addMethod("lettersonly", function (value, element) {
+        return this.optional(element) || /^[a-z]+$/i.test(value);
+    }, "Letters only please");
+
+    $(document).ready(function () {
+        $("#regform").validate({
+            rules: {
+                Name: {
+                    required: true,
+                    minlength: 3,
+                    lettersonly: true
+                },
+            },
+            messages: {
+                Name: {
+                    required: "Please enter your name",
+                    lettersonly: 'Name should be alphabetical'
+                },
+
+            }
+        })
+    })
+</script>
+
+</html>
